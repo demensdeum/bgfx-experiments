@@ -50,3 +50,15 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+/1-2d/CMakeCache.txt
+/1-2d/.vscode/
+/1-2d/CMakeFiles/
+/1-2d/FragmentShader.glsl
+/1-2d/FragmentShader.spirv
+/1-2d/Makefile
+/1-2d/VertexShader.glsl
+/1-2d/VertexShader.spirv
+/1-2d/bgfx-2d
+/1-2d/build/.cmake/
+/1-2d/build/
+/1-2d/cmake_install.cmake
