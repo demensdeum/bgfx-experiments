@@ -221,6 +221,22 @@ int main(int argc, char **argv)
 
     bgfx::setViewClear(0, BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH, 0x443355FF, 1.0f, 0);
 
+    std::vector<Vertex3D_UV> vertices;
+
+    float Z = 0.0;
+    vertices.push_back(Vertex3D_UV{-0.5f, -0.5f, Z, 0.0f, 0.0f});
+    vertices.push_back(Vertex3D_UV{0.5f, -0.5f, Z, 1.0f, 0.0f});
+    vertices.push_back(Vertex3D_UV{0.0f, 0.5f, Z, 0.5f, 1.0f});
+
+    bgfx::VertexBufferHandle vertexBuffer = bgfx::createVertexBuffer(
+        bgfx::makeRef(
+            vertices.data(),
+            sizeof(decltype(vertices)::value_type) * vertices.size()),
+        Vertex3D_UV::ms_layout);
+
+    bgfx::TextureHandle texture = loadTexture("brick.texture.bmp");
+    bgfx::UniformHandle s_texture0 = bgfx::createUniform("s_texture0", bgfx::UniformType::Sampler);
+
     while (isRun)
     {
         SDL_PollEvent(&e);
@@ -228,15 +244,31 @@ int main(int argc, char **argv)
         {
             isRun = false;
         }
-        if (e.type == SDL_KEYDOWN){
-            if (e.key.keysym.sym == SDLK_ESCAPE) {
+        if (e.type == SDL_KEYDOWN)
+        {
+            if (e.key.keysym.sym == SDLK_ESCAPE)
+            {
                 isRun = false;
             }
         }
 
+        bgfx::setVertexBuffer(0, vertexBuffer);
+        bgfx::setTexture(0, s_texture0, texture);
+
+        bgfx::setState(BGFX_STATE_DEFAULT);
+
         bgfx::submit(0, program);
         bgfx::frame();
     }
+
+    bgfx::destroy(vertexBuffer);
+    bgfx::destroy(program);
+    bgfx::destroy(texture);
+    bgfx::destroy(s_texture0);
+
+    bgfx::shutdown();
+    SDL_DestroyWindow(window);
+    SDL_Quit();    
 
     exit(0);
 }
