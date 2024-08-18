@@ -62,3 +62,13 @@ dkms.conf
 /1-2d/build/.cmake/
 /1-2d/build/
 /1-2d/cmake_install.cmake
+CMakeCache.txt
+CMakeFiles
+/2-emscripten-build/FragmentShader.glsl
+/2-emscripten-build/Makefile
+/2-emscripten-build/VertexShader.glsl
+/2-emscripten-build/VertexShader.spirv
+/2-emscripten-build/bgfx-2d.data
+/2-emscripten-build/bgfx-2d.js
+/2-emscripten-build/bgfx-2d.wasm
+/2-emscripten-build/cmake_install.cmake
