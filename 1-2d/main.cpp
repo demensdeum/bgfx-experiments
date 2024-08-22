@@ -92,7 +92,11 @@ bgfx::TextureHandle loadTexture(const char *filepath)
 
 int main(int argc, char **argv)
 {
-    std::string windowTitle = "Bombov";
+    std::string windowTitle = "Bgfx 2D Test";
+    if (argc != 2) {
+        std::cout << "Argument must be OPENGL or VULKAN" << std::endl;
+        exit(1);
+    }
     std::string mode = std::string(argv[1]);
 
    Uint32 flags = SDL_WINDOW_OPENGL;
